@@ -1,33 +1,56 @@
 package com.example.carrental
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
-import android.widget.ImageView
-import android.widget.TextView
-import java.util.logging.Handler
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private var progressBar : ProgressBar? = null;
-    private var i =0;
-    private var txtView : TextView? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
+
+        val barAction = supportActionBar
+        val loader = ProgressBar(this)
+        val navView: BottomNavigationView = findViewById(R.id.main_bottom_navigation)
+
+        barAction?.setDisplayShowHomeEnabled(true)
+        barAction?.setIcon(R.drawable.coche)
         setContentView(R.layout.activity_main)
 
-        val loader = ProgressBar(this)
-        val handler = android.os.Handler()
         loader.startLoading()
 
-        handler.postDelayed(object :Runnable{
-            override fun run(){
-                loader.dismiss()
-            }
-        },5000)
 
+        Handler(Looper.getMainLooper()).postDelayed({
+            loader.dismiss()
+            supportActionBar?.show()
+        }, 3000)
+
+        navView.setOnItemReselectedListener { item -> 
+            when(item.itemId){
+                R.id.home -> {
+                    startActivity(Intent(this,ActivityHome::class.java))
+                }
+                R.id.pin_drop ->{
+
+                }
+                R.id.search_location -> {
+
+                }
+            }
+            
+        }
+        
     }
+
 }
 

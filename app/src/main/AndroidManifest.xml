@@ -8,8 +8,10 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/coche"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CarRental"
-        >
+        android:theme="@style/Theme.CarRental">
+        <activity
+            android:name=".ActivityHome"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
