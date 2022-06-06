@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
+        setContentView(R.layout.activity_main)
 
         val barAction = supportActionBar
         val loader = ProgressBar(this)
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         barAction?.setDisplayShowHomeEnabled(true)
         barAction?.setIcon(R.drawable.coche)
-        setContentView(R.layout.activity_main)
+
 
         loader.startLoading()
 
@@ -39,13 +40,16 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId){
                 R.id.home -> {
                     startActivity(Intent(this,ActivityHome::class.java))
+                    true
                 }
                 R.id.pin_drop ->{
-
+                    startActivity(Intent(this, ActivityHome::class.java))
+                    true
                 }
                 R.id.search_location -> {
-
+                    true
                 }
+                else -> false
             }
             
         }
